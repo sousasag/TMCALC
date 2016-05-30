@@ -1,0 +1,26 @@
+Compilation:
+
+Use the makefile, just type: make
+
+Usage:
+
+tmcalc [ratios_list] [feh_calib_list] [Ares file]
+Usage Example:
+./tmcalc ratios_list.dat feh_calib_lines.dat HD20619.ares
+
+Easy script:
+
+TMCalc.bash
+
+
+Usage:
+
+TMCalc.bash [Ares file]
+Usage Example:
+./TMCalc.bash HD20619.ares
+
+
+This can be directly used with the output file from ARES.
+ARES Webpage: 
+http://www.astro.up.pt/~sousasag/ares/
+
