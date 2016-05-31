@@ -1,7 +1,7 @@
 #!/bin/bash
 dire=$(pwd)
 # cd PATH_INSTALATION (change here)
-cd /home/sousasag/programs/tmcalc/
+cd /home/sousasag/Programas/GIT_projects/TMCALC
 if [ -f "tmcalc" ]; then
 
 
@@ -12,7 +12,12 @@ if [ -f "tmcalc" ]; then
 
 	file=$1
 
+	if [ $file='.' ]; then
+		file=$dire/$1
+	fi
+
 	if [ -f "$file" ]; then
+		echo $file
 
 		./tmcalc ratios_list.dat feh_calib_lines.dat $file
 

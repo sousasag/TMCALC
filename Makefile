@@ -17,6 +17,7 @@ all: tmcalc
 # para fazer o programa principal 
 tmcalc: ${OBJFILES}
 	gcc -g -ansi -Wall -o tmcalc ${OBJFILES} -lm
+	sed -i "4s@.*@cd $(CURDIR)@" TMCalc.bash
 
 tmcalc.o: tmcalc.c lineRatioCalibCore.h
 
