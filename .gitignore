@@ -1,2 +1,5 @@
 tmcalc
 tmcalc.o
+tmcalc_cython/build/
+tmcalc_cython/tmcalc_module.so
+tmcalc_cython/tmcalc_module.c

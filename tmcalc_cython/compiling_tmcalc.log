@@ -1,0 +1,79 @@
+running build_ext
+cythoning tmcalc_module.pyx to tmcalc_module.c
+building 'tmcalc_module' extension
+creating build
+creating build/temp.linux-x86_64-2.7
+x86_64-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fno-strict-aliasing -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/usr/lib/python2.7/dist-packages/numpy/core/include -I/usr/include/python2.7 -c tmcalc_module.c -o build/temp.linux-x86_64-2.7/tmcalc_module.o
+In file included from /usr/lib/python2.7/dist-packages/numpy/core/include/numpy/ndarraytypes.h:1761:0,
+                 from /usr/lib/python2.7/dist-packages/numpy/core/include/numpy/ndarrayobject.h:17,
+                 from /usr/lib/python2.7/dist-packages/numpy/core/include/numpy/arrayobject.h:4,
+                 from tmcalc_module.c:242:
+/usr/lib/python2.7/dist-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:15:2: warning: #warning "Using deprecated NumPy API, disable it by " "#defining NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION" [-Wcpp]
+ #warning "Using deprecated NumPy API, disable it by " \
+  ^
+In file included from tmcalc_module.c:244:0:
+lineRatioCalibCore.h: In function ‘get_temperature’:
+lineRatioCalibCore.h:269:9: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘long int’ [-Wformat=]
+  printf("Final Teff: %f +- %f   -  nratios: %d\n",Teff_final_cor,erTeff/sqrt(nrind), n2);
+         ^
+lineRatioCalibCore.h:71:34: warning: variable ‘meanrat’ set but not used [-Wunused-but-set-variable]
+         double rata[nl],ratb[nl],meanrat[nl];
+                                  ^
+lineRatioCalibCore.h:71:25: warning: variable ‘ratb’ set but not used [-Wunused-but-set-variable]
+         double rata[nl],ratb[nl],meanrat[nl];
+                         ^
+lineRatioCalibCore.h:71:16: warning: variable ‘rata’ set but not used [-Wunused-but-set-variable]
+         double rata[nl],ratb[nl],meanrat[nl];
+                ^
+In file included from /usr/lib/python2.7/dist-packages/numpy/core/include/numpy/ndarrayobject.h:26:0,
+                 from /usr/lib/python2.7/dist-packages/numpy/core/include/numpy/arrayobject.h:4,
+                 from tmcalc_module.c:242:
+tmcalc_module.c: At top level:
+/usr/lib/python2.7/dist-packages/numpy/core/include/numpy/__multiarray_api.h:1629:1: warning: ‘_import_array’ defined but not used [-Wunused-function]
+ _import_array(void)
+ ^
+In file included from /usr/lib/python2.7/dist-packages/numpy/core/include/numpy/ufuncobject.h:327:0,
+                 from tmcalc_module.c:243:
+/usr/lib/python2.7/dist-packages/numpy/core/include/numpy/__ufunc_api.h:241:1: warning: ‘_import_umath’ defined but not used [-Wunused-function]
+ _import_umath(void)
+ ^
+In file included from tmcalc_module.c:244:0:
+lineRatioCalibCore.h: In function ‘file_lines’:
+lineRatioCalibCore.h:43:5: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+     fgets (str , 200, pFile);
+     ^
+In file included from tmcalc_module.c:244:0:
+lineRatioCalibCore.h: In function ‘get_temperature’:
+lineRatioCalibCore.h:79:2: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+  fgets (str,200,pFile);
+  ^
+lineRatioCalibCore.h:83:3: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+   fgets (str,200,pFile);
+   ^
+lineRatioCalibCore.h:153:3: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+   fgets (str,200,pFile2);
+   ^
+lineRatioCalibCore.h: In function ‘get_feh’:
+lineRatioCalibCore.h:298:2: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+  fgets (str,400,pFile);
+  ^
+lineRatioCalibCore.h:301:3: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+   fgets (str,400,pFile);
+   ^
+lineRatioCalibCore.h:366:3: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+   fgets (str,200,pFile2);
+   ^
+In file included from /usr/include/stdio.h:936:0,
+                 from /usr/include/python2.7/Python.h:33,
+                 from tmcalc_module.c:4:
+In function ‘fgets’,
+    inlined from ‘get_feh’ at lineRatioCalibCore.h:298:2:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:261:9: warning: call to ‘__fgets_chk_warn’ declared with attribute warning: fgets called with bigger size than length of destination buffer
+  return __fgets_chk_warn (__s, __bos (__s), __n, __stream);
+         ^
+In function ‘fgets’,
+    inlined from ‘get_feh’ at lineRatioCalibCore.h:301:3:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:261:9: warning: call to ‘__fgets_chk_warn’ declared with attribute warning: fgets called with bigger size than length of destination buffer
+  return __fgets_chk_warn (__s, __bos (__s), __n, __stream);
+         ^
+x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -Wl,-z,relro -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wl,-Bsymbolic-functions -Wl,-z,relro -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat -Werror=format-security build/temp.linux-x86_64-2.7/tmcalc_module.o -o /home/sousasag/Programas/GIT_projects/SPECPAR/tmcalc_cython/tmcalc_module.so
