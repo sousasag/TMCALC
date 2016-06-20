@@ -5,6 +5,10 @@
 #include "lineRatioCalibCore.h"
 #define max(a,b) (((a)>(b))?(a):(b))
 
+#define PRINT_FEH_FILE 0
+/* this option: 0 will not print in a file
+                1 will print individual line feh in a file "feh_individual.tmcalc"
+*/
 
 int main(int argc, char * argv[])
 {
@@ -31,15 +35,15 @@ int main(int argc, char * argv[])
 
 	double fehmax, fehmin;
 
-	get_feh(filecalfeh, fileares, teff+erteff1, erteff1, erteff2, erteff3, &feh, &erfeh,&nfeh);
+	get_feh(filecalfeh, fileares, teff+erteff1, erteff1, erteff2, erteff3, &feh, &erfeh,&nfeh, 0);
 	fehmax=feh;
-	get_feh(filecalfeh, fileares, teff-erteff1, erteff1, erteff2, erteff3, &feh, &erfeh,&nfeh);
+	get_feh(filecalfeh, fileares, teff-erteff1, erteff1, erteff2, erteff3, &feh, &erfeh,&nfeh, 0);
 	fehmin=feh;
 	double erfehtot=(fehmax-fehmin)/2.;
 	/*printf("MajFeh: %f - %f - %f \n", erfehtot, fehmax, fehmin);*/
 
 
-	get_feh(filecalfeh, fileares, teff, erteff1, erteff2, erteff3, &feh, &erfeh,&nfeh);
+	get_feh(filecalfeh, fileares, teff, erteff1, erteff2, erteff3, &feh, &erfeh,&nfeh, PRINT_FEH_FILE);
 
 	printf("starfile: %s\n",fileares); 
 	printf("number of ratios used for Teff: %li with stddev %f\n",nteff,erteff2);

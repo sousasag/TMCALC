@@ -8,7 +8,7 @@
 long file_lines(char*);
 void get_ratios(double*, double*, long, long, double*, double*, double*);
 void get_temperature(char*, char*, double*, double*, double*, double*, long*, long*);
-void get_feh(char*, char*, double, double, double, double, double*, double*, long*);
+void get_feh(char*, char*, double, double, double, double, double*, double*, long*, int);
 
 
 void get_ratios(double lares[], double ewares[],long na, long nf, double line1[], double line2[], double lratios[]){
@@ -266,7 +266,7 @@ void get_temperature(char* filecal,char* fileares, double* Teffout, double* erTe
 	return;
 }
 
-void get_feh(char* filecal, char* fileares, double teff, double erteff1, double erteff2, double erteff3, double* fehout, double* erfehout, long* nout){
+void get_feh(char* filecal, char* fileares, double teff, double erteff1, double erteff2, double erteff3, double* fehout, double* erfehout, long* nout, int print){
 
 /*Leitura do ficheiro de calibraçao*/
 	char str[200];
@@ -371,6 +371,15 @@ void get_feh(char* filecal, char* fileares, double teff, double erteff1, double 
 		}
 	}
 
+    FILE *pFileout;
+    if (print == 1) {
+        pFileout = fopen ("feh_individual.tmcalc","w");
+/*        printf("nl\twavelenght\t[FE/H]\n");
+        printf("------\t----------\t------\n"); */
+        fprintf(pFileout, "nl\twavelenght\t[FE/H]\n");
+        fprintf(pFileout, "------\t----------\t------\n");
+    }
+
 /*Calcular FE/H:*/
 	double feh[nl],feh1[nl],feh2[nl],stddev1[nl],stddev2[nl];
 	long n1=0;
@@ -394,7 +403,14 @@ void get_feh(char* filecal, char* fileares, double teff, double erteff1, double 
 			stddev1[n1]=stddev[i];
 			n1++;
 		}
+        if (print == 1) {
+/*            printf("%03ld\t%8.2f\t%8.5f\n", i, line[i], feh[i]); */
+            fprintf(pFileout, "%03ld\t%8.2f\t%8.5f\n", i, line[i], feh[i]);
+        }
+
 	}
+    if (print == 1)
+        fclose (pFileout);
 
 	double sigma1=0.,soma=0.,meanfeh=0.;
 	soma=0;
