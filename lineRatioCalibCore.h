@@ -167,6 +167,7 @@ void get_temperature(char* filecal,char* fileares, double* Teffout, double* erTe
 			if (lratios[i] < 0) lratios[i]=0.001;
 			teff[i]=calib[i][0]+calib[i][1]*log10(lratios[i])+calib[i][2]*log10(lratios[i])*log10(lratios[i])+calib[i][3]*log10(lratios[i])*log10(lratios[i])*log10(lratios[i]);
 		} else {
+            if (nfit[i] >2) lratios[i]=1./lratios[i];
 			teff[i]=calib[i][0]+calib[i][1]*lratios[i]+calib[i][2]*lratios[i]*lratios[i]+calib[i][3]*lratios[i]*lratios[i]*lratios[i];
 		}
 		if (teff[i] >=4200. && teff[i] <=6800. && lratios[i] >=0.01 && lratios[i] <=100) {
@@ -398,7 +399,7 @@ void get_feh(char* filecal, char* fileares, double teff, double erteff1, double 
 			feh[i]=-101.;
 		else
 			feh[i]= (-vb + sqrt(vb*vb - 4*va*vc) )/ (2*va) ;
-		if ( (ewaresin[i] > ewa[i]-0.  && ewaresin[i] < ewb[i]+0.) && (teff >= teffa[i]-100.  && teff <= teffb[i]+100. ) &&  ( feh[i] >= feha[i]-0. && feh[i] <= fehb[i]+0.  )   )	{
+		if ( (ewaresin[i] > ewa[i]-0.  && ewaresin[i] < ewb[i]+0.) && (teff >= teffa[i]-100.  && teff <= teffb[i]+100. ) &&  ( feh[i] >= feha[i]-0.1 && feh[i] <= fehb[i]+0.1  )   )	{
 			feh1[n1]=feh[i];
 			stddev1[n1]=stddev[i];
 			n1++;
