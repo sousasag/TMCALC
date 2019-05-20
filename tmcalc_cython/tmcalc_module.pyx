@@ -45,7 +45,7 @@ def get_temperature_py(filecal, fileares):
   reading a ares files and a the calibration file
 
   call like:
-  get_temperature_py('ratios_list.dat', 'HD206res')
+  get_temperature_py('ratios_list.dat', 'HD20619.ares')
 
   returns a tuple like:
   (teff,erteff,erteff2,erteff3,nout,nindout)
