@@ -9,20 +9,20 @@ cdef extern from "lineRatioCalibCore.h":
   long file_lines(char* a)
   void get_temperature(char* filecal,
                        char* fileares,
-                       double* Teffout, 
-                       double* erTeffout1, 
-                       double* erTeffout2, 
-                       double* erTeffout3, 
-                       long* nout, 
+                       double* Teffout,
+                       double* erTeffout1,
+                       double* erTeffout2,
+                       double* erTeffout3,
+                       long* nout,
                        long* nindout)
-  void get_feh(char* filecal, 
-               char* fileares, 
-               double teff, 
-               double erteff1, 
-               double erteff2, 
-               double erteff3, 
-               double* fehout, 
-               double* erfehout, 
+  void get_feh(char* filecal,
+               char* fileares,
+               double teff,
+               double erteff1,
+               double erteff2,
+               double erteff3,
+               double* fehout,
+               double* erfehout,
                long* nout)
 
 
@@ -32,13 +32,20 @@ def file_linespy(arg1):
   """
   return file_lines(arg1)
 
+
+def str_transform(a):
+  if sys.version_info.major >= 3:
+    return str.encode(a)
+  return a
+
+
 def get_temperature_py(filecal, fileares):
   """
-  Derive the temperature from the EW line-ratio calibrations 
+  Derive the temperature from the EW line-ratio calibrations
   reading a ares files and a the calibration file
 
   call like:
-  get_temperature_py('ratios_list.dat', 'HD20619.ares')
+  get_temperature_py('ratios_list.dat', 'HD206res')
 
   returns a tuple like:
   (teff,erteff,erteff2,erteff3,nout,nindout)
@@ -51,9 +58,9 @@ def get_temperature_py(filecal, fileares):
   nouta = np.array([0],dtype=int)
   nindouta = np.array([0],dtype=int)
 
-  get_temperature(filecal,
-                  fileares,
-                  <double*> np.PyArray_DATA(teffa), 
+  get_temperature(str_transform(filecal),
+                  str_transform(fileares),
+                  <double*> np.PyArray_DATA(teffa),
                   <double*> np.PyArray_DATA(erteffa),
                   <double*> np.PyArray_DATA(erteff2a),
                   <double*> np.PyArray_DATA(erteff3a),
@@ -72,7 +79,7 @@ def get_temperature_py(filecal, fileares):
 
 def get_feh_py(filecal, fileares, teff, erteff, erteff2, erteff3):
   """
-  Derive the feh from the iron lines calibrations 
+  Derive the feh from the iron lines calibrations
   reading a ares files and a the calibration file and given a teff
 
   call like:
@@ -86,9 +93,9 @@ def get_feh_py(filecal, fileares, teff, erteff, erteff2, erteff3):
   erfehouta = np.array([0],dtype=float)
   nouta = np.array([0],dtype=int)
 
-  get_feh(filecal,
-          fileares,
-          teff, 
+  get_feh(str_transform(filecal),
+          str_transform(fileares),
+          teff,
           erteff,
           erteff2,
           erteff3,
@@ -100,5 +107,3 @@ def get_feh_py(filecal, fileares, teff, erteff, erteff2, erteff3):
   erfehout=erfehouta[0]
   nout=nouta[0]
   return (fehout, erfehout, nout)
-
-
