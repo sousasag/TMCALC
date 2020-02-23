@@ -3,6 +3,7 @@
 
 # import both numpy and the Cython declarations for numpy
 import numpy as np
+import sys
 cimport numpy as np
 
 cdef extern from "lineRatioCalibCore.h":
