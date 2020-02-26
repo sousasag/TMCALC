@@ -1,7 +1,7 @@
 # makefile 
 # variaveis do make
 INCLUDES =  
-SOURCES = tmcalc.c TMCalc.bash
+SOURCES = tmcalc.c TMCalc_repo.bash
 OBJFILES = tmcalc.o 
 
 # regras de sufixo
@@ -17,7 +17,8 @@ all: tmcalc
 # para fazer o programa principal 
 tmcalc: ${OBJFILES}
 	gcc -g -ansi -Wall -o tmcalc ${OBJFILES} -lm
-	sed -i "4s@.*@cd $(CURDIR)@" TMCalc.bash
+	sed "4s@.*@cd $(CURDIR)@" TMCalc_repo.bash > TMCalc.bash
+	chmod a+x TMCalc.bash
 	cd tmcalc_cython; python setup.py build_ext --inplace
 
 tmcalc.o: tmcalc.c lineRatioCalibCore.h
@@ -26,6 +27,7 @@ TMCalc.bash: feh_calib_lines.dat ratios_list.dat
 
 clean: 
 	rm ${OBJFILES} tmcalc
+	rm -rf TMCalc.bash
 	cd tmcalc_cython; rm -rf build tmcalc_module.so tmcalc_module.c
 
 
