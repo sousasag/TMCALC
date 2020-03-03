@@ -4,3 +4,4 @@ tmcalc_cython/build/
 tmcalc_cython/tmcalc_modul*.so
 tmcalc_cython/tmcalc_module.c
 feh_individual.tmcalc
+TMCalc.bash
