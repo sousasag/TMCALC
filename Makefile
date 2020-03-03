@@ -26,6 +26,6 @@ TMCalc.bash: feh_calib_lines.dat ratios_list.dat
 
 clean: 
 	rm ${OBJFILES} tmcalc
-	cd tmcalc_cython; rm -rf build tmcalc_module.so tmcalc_module.c
+	cd tmcalc_cython; rm -rf build tmcalc_modul*.so tmcalc_module.c
 
 
