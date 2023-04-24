@@ -3,7 +3,6 @@
 
 ##imports:
 
-import tmcalc_module as tm
 import os
 import numpy as np
 from astropy import units as u
@@ -13,8 +12,12 @@ from astropy.table import Table
 import sys
 #sys.path.insert(0, "/home/sousasag/Programas/GIT_Projects/MR_spec/")
 sys.path.insert(0, "/home/sousasag/Programas/GIT_projects/MR_spec/")
+sys.path.insert(0, "/home/sousasag/Programas/GIT_projects/TMCALC/tmcalc_cython/")
+teff_cal = "/home/sousasag/Programas/GIT_projects/TMCALC/ratios_list.dat"
+feh_cal  = "/home/sousasag/Programas/GIT_projects/TMCALC/feh_calib_lines.dat"
 import logg_paralax_mass as loggdr3
 import MR_spec as MR
+import tmcalc_module as tm
 
 
 ## My functions:
@@ -89,8 +92,8 @@ def main():
     print(f"Wrong format for input file: (*{filein[-5:]}). Should be (*.ares).")
     return -1
 
-  teff,erteff,erteff2,erteff3,nout,nindout = tm.get_temperature_py('ratios_list.dat', 'HD20619.ares')
-  feh, erfeh, nout = tm.get_feh_py('feh_calib_lines.dat', 'HD20619.ares', teff, erteff, erteff2, erteff3)
+  teff,erteff,erteff2,erteff3,nout,nindout = tm.get_temperature_py(teff_cal, filein)
+  feh, erfeh, nout = tm.get_feh_py(feh_cal, filein, teff, erteff, erteff2, erteff3)
 
   print(f"  Teff from TMCalc: {teff} +- {erteff2}")
   print(f"[Fe/H] from TMCalc: { feh} +- {  erfeh}")
