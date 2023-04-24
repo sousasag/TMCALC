@@ -19,7 +19,7 @@ tmcalc: ${OBJFILES}
 	gcc -g -ansi -Wall -o tmcalc ${OBJFILES} -lm
 	sed "4s@.*@cd $(CURDIR)@" TMCalc_repo.bash > TMCalc.bash
 	chmod a+x TMCalc.bash
-	cd tmcalc_cython; python setup.py build_ext --inplace
+	cd tmcalc_cython; python3 setup.py build_ext --inplace
 
 tmcalc.o: tmcalc.c lineRatioCalibCore.h
 

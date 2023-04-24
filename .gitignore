@@ -1,7 +1,8 @@
 tmcalc
 tmcalc.o
 tmcalc_cython/build/
-tmcalc_cython/tmcalc_module.so
+tmcalc_cython/tmcalc_module*so
 tmcalc_cython/tmcalc_module.c
 feh_individual.tmcalc
 TMCalc.bash
+HD20619.tmcalc_gaia
