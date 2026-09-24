@@ -10,6 +10,28 @@
                 1 will print individual line feh in a file "feh_individual.tmcalc"
 */
 
+void print_banner(void)
+{
+    printf(
+		"*******************************************************************************\n"
+		"*                                                                             *\n"
+		"*  TTTTTTTTTTT  M       M   CCCCCCCC      A       L        CCCCCCCC           *\n"
+		"*       T       MM     MM   CC           A A      L        CC                 *\n"
+		"*       T       M M   M M   CC          A   A     L        CC                 *\n"
+		"*       T       M  M M  M   CC         AAAAAAA    L        CC                 *\n"
+		"*       T       M   M   M   CC         A     A    L        CC                 *\n"
+		"*       T       M       M   CC         A     A    L        CC                 *\n"
+		"*       T       M       M   CCCCCCCC   A     A    LLLLLLL  CCCCCCCC           *\n"
+		"*                                                                             *\n"
+		"*******************************************************************************\n"
+		"\n"
+		"                  Temperature and Metallicity Calculator \n"
+		"                               Sergio G. Sousa\n"
+		"\n"
+		"*******************************************************************************\n"
+		"\n");
+}
+
 int main(int argc, char * argv[])
 {
 
@@ -22,6 +44,8 @@ int main(int argc, char * argv[])
 		return 0;
 	}
 
+	print_banner();
+
 	char filecalteff[200],filecalfeh[200],fileares[200];
 
 	strcpy(filecalteff,argv[1]);
@@ -30,7 +54,7 @@ int main(int argc, char * argv[])
 
 	double teff, erteff1, erteff2, erteff3, feh, erfeh;
 	long nteff, nfeh, nind;
-
+	
 	get_temperature(filecalteff, fileares, &teff, &erteff1, &erteff2, &erteff3, &nteff, &nind);
 
 	double fehmax, fehmin;

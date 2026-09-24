@@ -6,3 +6,5 @@ tmcalc_cython/tmcalc_module.c
 feh_individual.tmcalc
 TMCalc.bash
 HD20619.tmcalc_gaia
+tmpdir
+TOI-480_UVES.ares

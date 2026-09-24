@@ -88,12 +88,23 @@ def main():
     filein  = sys.argv[1]
     gaiadr3 = sys.argv[2]
 
+  flag = "ARES"
   if filein[-5:] != ".ares":
     print(f"Wrong format for input file: (*{filein[-5:]}). Should be (*.ares).")
-    return -1
+    if filein[-4:] != ".dat":
+       print(f"Wrong format for input file: (*{filein[-4:]}). Should be (*.ares) or (*.dat).")
+       return -1
+    else:
+       print("Assuming *.dat file is an ODUSSEAS output file")
+       flag = "ODUSSEAS"
 
-  teff,erteff,erteff2,erteff3,nout,nindout = tm.get_temperature_py(teff_cal, filein)
-  feh, erfeh, nout = tm.get_feh_py(feh_cal, filein, teff, erteff, erteff2, erteff3)
+  if flag == "ARES":
+    teff,erteff,erteff2,erteff3,nout,nindout = tm.get_temperature_py(teff_cal, filein)
+    feh, erfeh, nout = tm.get_feh_py(feh_cal, filein, teff, erteff, erteff2, erteff3)
+  else:
+    print("Reading ODUSSEAS file output on first line")
+    teff, erteff2, feh, erfeh = np.loadtxt(filein, usecols=(5,8,1,4), unpack=True, skiprows=1)
+    print(teff, erteff2, feh, erfeh)
 
   print(f"  Teff from TMCalc: {teff} +- {erteff2}")
   print(f"[Fe/H] from TMCalc: { feh} +- {  erfeh}")
